@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.352
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PYPA.Lanchonete", "PYPA.Lanchonete\PYPA.Lanchonete.csproj", "{612D0A1D-5665-4028-AE3E-56D439267DC9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PYPA.Lanchonete.Core", "PYPA.Lanchonete.Core\PYPA.Lanchonete.Core.csproj", "{FA3B91C7-4698-434F-B451-1BC1FD38F405}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{612D0A1D-5665-4028-AE3E-56D439267DC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{612D0A1D-5665-4028-AE3E-56D439267DC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{612D0A1D-5665-4028-AE3E-56D439267DC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{612D0A1D-5665-4028-AE3E-56D439267DC9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA3B91C7-4698-434F-B451-1BC1FD38F405}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA3B91C7-4698-434F-B451-1BC1FD38F405}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA3B91C7-4698-434F-B451-1BC1FD38F405}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA3B91C7-4698-434F-B451-1BC1FD38F405}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A2440BD7-8362-4708-A453-B3206EAE329F}
+	EndGlobalSection
+EndGlobal

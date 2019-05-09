@@ -1,0 +1,44 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace PYPA.Lanchonete.Core
+{
+    public class Pedido
+    {
+        public StatusPedido Status { get; private set; }
+        public int Cliente { get; }
+        public List<ItemPedido> Itens { get; }
+
+        public Pedido(int cliente, List<ItemPedido> itens)
+        {
+            Status = StatusPedido.NaFila;
+            Cliente = cliente;
+            Itens = itens;
+        }
+
+        public void AdicionarItem(ItemPedido item)
+        {
+            var itemExistente = Itens.FirstOrDefault(i => i.Lanche.Nome == item.Lanche.Nome);
+            if (itemExistente == null) Itens.Add(item);
+            else itemExistente.DefinirQuantidade(itemExistente.Quantidade + item.Quantidade);
+        }
+        public void IniciarPreparo()
+        {
+            if (Status != StatusPedido.NaFila) throw new Exception("Pedido já iniciado.");
+            this.Status = StatusPedido.Iniciado;
+        }
+        public void FinalizarPreparo()
+        {
+            if (Status != StatusPedido.Iniciado) throw new Exception("Pedido não está em preparo.");
+            this.Status = StatusPedido.Finalizado;
+        }
+        public void EntregarPedido()
+        {
+            if (Status == StatusPedido.Entrege) throw new Exception("Pedido já entregue.");
+            if (Status != StatusPedido.Finalizado) throw new Exception("Pedido não finalizado.");
+            this.Status = StatusPedido.Entrege;
+        }
+    }
+}

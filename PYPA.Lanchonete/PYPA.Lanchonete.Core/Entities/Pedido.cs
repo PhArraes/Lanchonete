@@ -8,6 +8,7 @@ namespace PYPA.Lanchonete.Core
     public class Pedido
     {
         public StatusPedido Status { get; private set; }
+        public String StatusDesc { get { return Enum.GetName(typeof(StatusPedido), Status); } }
         public int Numero { get; }
         public List<ItemPedido> Itens { get; }
 
@@ -27,18 +28,18 @@ namespace PYPA.Lanchonete.Core
         public void IniciarPreparo()
         {
             if (Status != StatusPedido.NaFila) throw new Exception("Pedido já iniciado.");
-            this.Status = StatusPedido.Iniciado;
+            this.Status = StatusPedido.PreparoIniciado;
         }
         public void FinalizarPreparo()
         {
-            if (Status != StatusPedido.Iniciado) throw new Exception("Pedido não está em preparo.");
-            this.Status = StatusPedido.Finalizado;
+            if (Status != StatusPedido.PreparoIniciado) throw new Exception("Pedido não está em preparo.");
+            this.Status = StatusPedido.PreparoFinalizado;
         }
         public void EntregarPedido()
         {
-            if (Status == StatusPedido.Entrege) throw new Exception("Pedido já entregue.");
-            if (Status != StatusPedido.Finalizado) throw new Exception("Pedido não finalizado.");
-            this.Status = StatusPedido.Entrege;
+            if (Status == StatusPedido.PedidoEntregue) throw new Exception("Pedido já entregue.");
+            if (Status != StatusPedido.PreparoFinalizado) throw new Exception("Pedido não finalizado.");
+            this.Status = StatusPedido.PedidoEntregue;
         }
     }
 }

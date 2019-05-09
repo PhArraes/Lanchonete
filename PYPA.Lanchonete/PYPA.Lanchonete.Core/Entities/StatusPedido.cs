@@ -7,13 +7,13 @@ namespace PYPA.Lanchonete.Core
 {
     public enum StatusPedido
     {
-        [Description("NaFila")]
+        [Description("Na Fila")]
         NaFila = 0,
-        [Description("Iniciado")]
-        Iniciado = 1,
-        [Description("Finalizado")]
-        Finalizado = 2,
-        [Description("Entrege")]
-        Entrege = 3
+        [Description("Preparo Iniciado")]
+        PreparoIniciado = 1,
+        [Description("Preparo Finalizado")]
+        PreparoFinalizado = 2,
+        [Description("Pedido Entregue")]
+        PedidoEntregue = 3
     }
 }

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PYPA.Lanchonete.Core;
 using PYPA.Lanchonete.Core.Factories;
+using PYPA.Lanchonete.Core.Interfaces;
 using PYPA.Lanchonete.Models;
 
 namespace PYPA.Lanchonete.Controllers
@@ -29,7 +30,8 @@ namespace PYPA.Lanchonete.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(RestauranteService.PegarRestaurante().Pedidos);
+            var restaurante = RestauranteService.PegarRestaurante();
+            return Ok(restaurante == null ? new List<Pedido>(): restaurante.Pedidos);
         }
 
         // GET: api/Pedidos/5
@@ -41,16 +43,23 @@ namespace PYPA.Lanchonete.Controllers
 
         // POST: api/Pedidos
         [HttpPost]
-        public void Post([FromBody] NovoPedidoModel request)
+        public IActionResult Post([FromBody] NovoPedidoModel request)
         {
             var restaurante = RestauranteService.PegarRestaurante();
-            restaurante.NovoPedido(PedidoFactory.Create(restaurante.Cardápio, request.Items));
+            var número = restaurante.PegarPróximoNúmero();
+            restaurante.NovoPedido(PedidoFactory.Create(número, restaurante.Cardapio, request.Items.ToList<IItemPedido>()));
+            return Ok();
         }
 
         // PUT: api/Pedidos/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public IActionResult Put(int id)
         {
+            var restaurante = RestauranteService.PegarRestaurante();
+            var pedido = restaurante.Pedidos.FirstOrDefault(p => p.Numero == id);
+            if (pedido == null) return BadRequest();
+            pedido.EntregarPedido();
+            return Ok();
         }
 
     }

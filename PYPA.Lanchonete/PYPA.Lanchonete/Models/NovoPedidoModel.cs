@@ -8,6 +8,13 @@ namespace PYPA.Lanchonete.Models
 {
     public class NovoPedidoModel
     {
-        public List<IItemPedido> Items { get; set; }
+        public List<ItemPedidoModel> Items { get; set; }
+    }
+
+    public class ItemPedidoModel : IItemPedido
+    {
+        public string Nome { get; set; }
+
+        public int Quantidade { get; set; }
     }
 }

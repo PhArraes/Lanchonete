@@ -1,0 +1,19 @@
+<h4>Pedido</h4>
+<table class='table table-striped' *ngIf="Itens">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Quantidade</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of Itens">
+            <td>{{ item.nome }}</td>
+            <td>{{ item.quantidade }}</td>
+            <th>
+                <button class="btn btn-primary btn-block" (click)="removerItem(item)">-</button>
+            </th>
+        </tr>
+    </tbody>
+</table>

@@ -2,30 +2,54 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 
 namespace PYPA.Lanchonete.Core
 {
    public class Restaurante
     {
         public String Nome { get; }
-        public Cardápio Cardápio { get; }
+        public Cardápio Cardapio { get; }
         public Cozinha Cozinha { get; }
 
         public List<Pedido> Pedidos { get; }
         private List<Promoção> Promoções { get; }
+        private int NúmeroDePedido = 0;
+        private object MonitorNúmeroDePedido = new object();
 
         public Restaurante(int numCozinheiros, Cardápio cardápio)
         {
             Nome = "";
             Cozinha = new Cozinha(numCozinheiros);
-            Cardápio = cardápio;
+            Cardapio = cardápio;
             Pedidos = new List<Pedido>();
             Promoções = new List<Promoção>();
             AdicionarPromoçãoPadrão(cardápio);
         }
 
         public void NovoPedido(Pedido pedido) {
-            Promoções.ForEach(p => pedido.Itens.AddRange(p.PegarPromoção(pedido)));
+            Promoções.ForEach(p => { 
+               p.PegarPromoção(pedido).ForEach(i => pedido.AdicionarItem(i));               
+            });            
+            Cozinha.NovoPedido(pedido);
+            Pedidos.Add(pedido);
+        }
+
+        public int PegarPróximoNúmero()
+        {
+            var número = -1;
+            if (Monitor.TryEnter(MonitorNúmeroDePedido, 10000))
+            {
+                try
+                {
+                    número =  this.NúmeroDePedido++;
+                }
+                finally
+                {
+                    Monitor.Exit(MonitorNúmeroDePedido);
+                }
+            }
+            return número;
         }
 
         private void AdicionarPromoçãoPadrão(Cardápio cardápio)

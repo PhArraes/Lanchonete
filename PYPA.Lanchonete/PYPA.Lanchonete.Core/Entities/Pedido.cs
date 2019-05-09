@@ -8,13 +8,13 @@ namespace PYPA.Lanchonete.Core
     public class Pedido
     {
         public StatusPedido Status { get; private set; }
-        public int Cliente { get; }
+        public int Numero { get; }
         public List<ItemPedido> Itens { get; }
 
-        public Pedido(int cliente, List<ItemPedido> itens)
+        public Pedido(int numero, List<ItemPedido> itens)
         {
             Status = StatusPedido.NaFila;
-            Cliente = cliente;
+            Numero = numero;
             Itens = itens;
         }
 

@@ -1,0 +1,16 @@
+<table class='table table-striped' *ngIf="Pedidos">
+    <thead>
+        <tr>
+            <th>número</th>
+            <th>itens</th>
+            <th *ngIf="PodeRetirar"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let pedido of Pedidos">
+            <td>{{ pedido.numero }}</td>
+            <td>{{ itens(pedido) }}</td>
+            <td *ngIf="PodeRetirar"><button class="btn btn-primary btn-block" (click)="retirar(pedido)" [disabled]="pedido.retirando">Retirar</button></td>
+        </tr>
+    </tbody>
+</table>

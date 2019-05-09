@@ -7,7 +7,7 @@ using System.Threading;
 
 namespace PYPA.Lanchonete.Core
 {
-    class Cozinha
+    public class Cozinha
     {
         private readonly object AlocarCozinheiroMonitor = new object();
         private List<Cozinheiro> Cozinheiros { get;  }
@@ -49,6 +49,7 @@ namespace PYPA.Lanchonete.Core
         private void PedidoPronto(Pedido pedido)
         {
             PedidosProntos.Add(pedido);
+            TentarIniciarPreparo();
         }
     }
 }

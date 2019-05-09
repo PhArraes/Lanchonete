@@ -1,0 +1,16 @@
+<h4>Novo item</h4>
+<div class="input-group input-group-sm mb-3">
+    <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroup-sizing-sm">Nome</span>
+    </div>
+    <input type="text" class="form-control" [(ngModel)]="nome">
+</div>
+<div class="input-group input-group-sm mb-3">
+    <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroup-sizing-sm">Tempo de preparo</span>
+    </div>
+    <input type="number" class="form-control" [(ngModel)]="tempo">
+</div>
+<div class="row" style="padding-left:5%;padding-right:5%">
+    <button class="btn btn-primary btn-block" [disabled]="!itemValido()" (click)="adicionarItem()">Adicionar item</button>
+</div>

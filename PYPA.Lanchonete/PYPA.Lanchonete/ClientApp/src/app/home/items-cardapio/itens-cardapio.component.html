@@ -1,0 +1,18 @@
+<table class='table table-striped' *ngIf="Itens">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Tempo de preparo</th>
+            <th *ngIf="PodeSelecionar"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of Itens">
+            <td>{{ item.nome }}</td>
+            <td>{{ item.tempoDePreparo }}</td>
+            <th *ngIf="PodeSelecionar">
+                <button class="btn btn-primary btn-block" (click)="selecionarItem(item)">+</button>
+            </th>
+        </tr>
+    </tbody>
+</table>

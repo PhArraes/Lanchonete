@@ -19,6 +19,12 @@ namespace PYPA.Lanchonete.Controllers
             this.cardápioFactory = cardápioFactory;
         }
 
+        [HttpGet]
+        public IActionResult Get()
+        {
+            return Ok(RestauranteService.PegarRestaurante());
+        }
+
         [HttpPost]
         public IActionResult Create([FromBody] CardapioModel request)
         {
